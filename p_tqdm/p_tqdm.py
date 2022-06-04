@@ -8,7 +8,14 @@ t_map: Performs a sequential map.
 t_imap: Returns an iterator for a sequential map.
 """
 
-from collections.abc import Sized
+import sys
+# in Python 3.10 the collections package has changed
+# and Sized is in abc
+if sys.version_info[0]>=3 and sys.version_info[1]>=10:
+    from collections.abc import Sized
+else:
+    from collections import Sized
+
 from typing import Any, Callable, Generator, Iterable, List
 
 from pathos.helpers import cpu_count
